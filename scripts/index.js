@@ -31,8 +31,20 @@ function simularProjetil() {
     setTimeout(simularProjetil, tempoAtualizacao * 1000);
 }
 
+const inputAngulo = document.getElementById('input-angulo');
+const inputGravidade = document.getElementById('input-gravidade');
+const inputVelocidade = document.getElementById('input-velocidade');
+
 function iniciarSimulacao() {
-    trajetoria.resetarTrajetoria();
+    function configurarTrajetoria() {
+        trajetoria.resetarTrajetoria();
+
+        trajetoria.setAnguloLancamento(parseFloat(inputAngulo.value));
+        trajetoria.setGravidade(parseFloat(inputGravidade.value));
+        trajetoria.setVelocidadeInicial(parseFloat(inputVelocidade.value));
+    }   
+
+    configurarTrajetoria();
     simularProjetil();
 }
 
