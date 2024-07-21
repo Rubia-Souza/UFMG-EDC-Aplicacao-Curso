@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./styles/style.css">
+        <title>Pow Pow</title>
+    </head>
+    <body>
+        <form id="inputs">
+            <label id="label-input-angulo" for="input-angulo">Ângulo (°): <input type="number" id="input-angulo" value="45" min="0"></label>
+            <label id="label-input-gravidade" for="input-gravidade">Gravidade (m/s²): <input type="number" id="input-gravidade" value="9.8" min="0"></label>
+            <label id="label-input-velocidade" for="input-velocidade">Velocidade (m/s): <input type="number" id="input-velocidade" value="70" min="0"></label>
+        </form>
+        
+        <img id="icone-mouse" src="./imgs/naves/ship_0000.png" alt="Nave espacial"/>
+        <canvas id="canvas"></canvas>
+
+        <script src="./scripts/constantes.js"></script>
+        <script src="./scripts/utils.js"></script>
+        <script src="./scripts/trajetoria.js"></script>
+        <script src="./scripts/index.js"></script>
+    </body>
+</html>
