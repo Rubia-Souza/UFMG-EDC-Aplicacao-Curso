@@ -19,6 +19,14 @@ function desenharProjetil(posicaoX, posicaoY) {
     context.fill();
 }
 
+function getPosicaoMouse(canvas, event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    return { x, y };
+}
+
 function simularProjetil() {
     clearCanvas();
 
@@ -35,18 +43,14 @@ const inputAngulo = document.getElementById('input-angulo');
 const inputGravidade = document.getElementById('input-gravidade');
 const inputVelocidade = document.getElementById('input-velocidade');
 
-function iniciarSimulacao() {
-    function configurarTrajetoria() {
-        trajetoria.resetarTrajetoria();
+canvas.addEventListener('click', (event) => {
+    const { x, y } = getPosicaoMouse(canvas, event);
+    
+    trajetoria.resetarTrajetoria();
+    trajetoria.setPosicao(x, canvas.height - y);
+    trajetoria.setAnguloLancamento(parseFloat(inputAngulo.value));
+    trajetoria.setGravidade(parseFloat(inputGravidade.value));
+    trajetoria.setVelocidadeInicial(parseFloat(inputVelocidade.value));
 
-        trajetoria.setAnguloLancamento(parseFloat(inputAngulo.value));
-        trajetoria.setGravidade(parseFloat(inputGravidade.value));
-        trajetoria.setVelocidadeInicial(parseFloat(inputVelocidade.value));
-    }   
-
-    configurarTrajetoria();
     simularProjetil();
-}
-
-const botaoIniciar = document.getElementById('botao-iniciar');
-botaoIniciar.addEventListener('click', iniciarSimulacao);
+});
