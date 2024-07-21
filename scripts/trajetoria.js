@@ -17,6 +17,19 @@ class Trajetoria {
         this.setGravidade(gravidade);
     }
 
+    atualizarPosicao(timeStep) {
+        // Velocidade horizontal é constante
+        const atualizacaoHorizontal = this.getVelocidadeHorizontal();
+        const atualizacaoVertical = this.getVelocidadeVertical() - this.getGravidade() * timeStep;
+
+        const novaPosicaoX = this.getPosicaoX() + atualizacaoHorizontal * timeStep;
+        const novaPosicaoY = this.getPosicaoY() + this.getVelocidadeVertical() * timeStep;
+
+        this.setPosicao(novaPosicaoX, novaPosicaoY);
+        this.setVelocidadeHorizontal(atualizacaoHorizontal);
+        this.setVelocidadeVertical(atualizacaoVertical);
+    }
+
     //#region .: Setters :.
 
     setPosicaoX(posicaoX) {
