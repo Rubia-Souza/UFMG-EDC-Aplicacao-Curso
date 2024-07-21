@@ -15,7 +15,7 @@ function clearCanvas() {
 
 function desenharProjetil(posicaoX, posicaoY) {
     context.beginPath();
-    context.arc(posicaoX, canvas.height - posicaoY, 5, 0, 2 * Math.PI);
+    context.arc(posicaoX, canvas.height - posicaoY, 9, 0, 2 * Math.PI);
     context.fillStyle = COR_PROJETIL;
     context.fill();
 }
@@ -59,3 +59,36 @@ canvas.addEventListener('click', (event) => {
 
     simularProjetil();
 });
+
+function configurarNaveMouse() {
+    const iconeMouse = document.getElementById('icone-mouse');
+    iconeMouse.style.transform = `rotate(${-inputAngulo.value}deg)`;
+
+    let numeroNave = Math.floor(Math.random() * 24);
+    if(numeroNave < 10) {
+        iconeMouse.src = `./imgs/naves/ship_000${numeroNave}.png`;
+    }
+    else {
+        iconeMouse.src = `./imgs/naves/ship_00${numeroNave}.png`;
+    }
+
+    canvas.addEventListener('mousemove', (event) => {
+        iconeMouse.style.display = 'block';
+    
+        const posicaoX = event.clientX - iconeMouse.width / 2;
+        const posicaoY = event.clientY - iconeMouse.height / 2;
+    
+        iconeMouse.style.top = `${posicaoY}px`;
+        iconeMouse.style.left = `${posicaoX}px`;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        iconeMouse.style.display = 'none';
+    });
+    
+    inputAngulo.addEventListener('input', () => {
+        iconeMouse.style.transform = `rotate(${-inputAngulo.value}deg)`;
+    });
+}
+
+configurarNaveMouse();

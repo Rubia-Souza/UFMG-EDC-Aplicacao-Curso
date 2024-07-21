@@ -10,4 +10,4 @@ const VALOR_ANGULO_LANCAMENTO_PADRAO = 45;
 // Valor do tempo de atualização dado em segundos (s)
 const VALOR_TEMPO_ATUALIZACAO_PADRAO = 0.05;
 
-const COR_PROJETIL = '#2E2E2E';
+const COR_PROJETIL = '#fab703';
