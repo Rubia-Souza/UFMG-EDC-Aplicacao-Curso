@@ -6,7 +6,8 @@ const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let tempoAtualizacao = VALOR_TEMPO_ATUALIZACAO_PADRAO;
+var tempoAtualizacao = VALOR_TEMPO_ATUALIZACAO_PADRAO;
+var intervaloSimulacao = null;
 
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -36,7 +37,7 @@ function simularProjetil() {
 
     trajetoria.atualizarPosicao(tempoAtualizacao);
     desenharProjetil(trajetoria.getPosicaoX(), trajetoria.getPosicaoY());
-    setTimeout(simularProjetil, tempoAtualizacao * 1000);
+    intervaloSimulacao = setTimeout(simularProjetil, tempoAtualizacao * 100);
 }
 
 const inputAngulo = document.getElementById('input-angulo');
@@ -44,6 +45,10 @@ const inputGravidade = document.getElementById('input-gravidade');
 const inputVelocidade = document.getElementById('input-velocidade');
 
 canvas.addEventListener('click', (event) => {
+    if(intervaloSimulacao) {
+        clearTimeout(intervaloSimulacao);
+    }
+
     const { x, y } = getPosicaoMouse(canvas, event);
     
     trajetoria.resetarTrajetoria();
