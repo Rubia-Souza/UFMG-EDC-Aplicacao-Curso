@@ -30,6 +30,14 @@ class Trajetoria {
         this.setVelocidadeVertical(atualizacaoVertical);
     }
 
+    resetarTrajetoria() {
+        this.setPosicaoX(0);
+        this.setPosicaoY(0);
+        this.setVelocidadeInicial(VALOR_VELOCIDADE_INICIAL_PADRAO);
+        this.setAnguloLancamento(VALOR_ANGULO_LANCAMENTO_PADRAO);
+        this.setGravidade(VALOR_GRAVIDADE_PADRAO);
+    }
+
     //#region .: Setters :.
 
     setPosicaoX(posicaoX) {
